@@ -16,17 +16,7 @@ public class Env(val grpcServerPort: Int) {
     }
 }
 
-class App {
-    val greeting: String
-        get() {
-            return "Hello, gRPC server!"
-        }
-}
-
 fun main() {
-    println(
-        App().greeting
-    )
     val env = Env.Loader.load()
     val server = HelloWorldServer(env.grpcServerPort)
     server.start()

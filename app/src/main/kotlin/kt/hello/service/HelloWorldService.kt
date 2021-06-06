@@ -5,22 +5,26 @@ import io.grpc.ServerBuilder
 import kt.hello.proto.GreeterGrpcKt
 import kt.hello.proto.HelloReply
 import kt.hello.proto.HelloRequest
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
+val logger: Logger = LoggerFactory.getLogger(HelloWorldServer::class.java)
 
 // https://github.com/grpc/grpc-kotlin/blob/master/examples/server/src/main/kotlin/io/grpc/examples/helloworld/HelloWorldServer.kt
 class HelloWorldServer(private val port: Int) {
-    val server: Server = ServerBuilder
+    private val server: Server = ServerBuilder
         .forPort(port)
         .addService(HelloWorldService())
         .build()
 
     fun start() {
         server.start()
-        println("Server started, listening on $port")
+        logger.info("gRPC Server started, listening on $port")
         Runtime.getRuntime().addShutdownHook(
             Thread {
-                println("*** shutting down gRPC server since JVM is shutting down")
+                logger.info("*** shutting down gRPC server since JVM is shutting down")
                 this@HelloWorldServer.stop()
-                println("*** server shut down")
+                logger.info("*** server shut down")
             }
         )
     }
