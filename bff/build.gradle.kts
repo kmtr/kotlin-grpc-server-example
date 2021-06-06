@@ -32,6 +32,9 @@ dependencies {
 
     // grpc for client
     implementation("io.grpc:grpc-protobuf:1.36.2")
+
+    // proto
+    implementation(project(":app:proto"))
 }
 
 application {
