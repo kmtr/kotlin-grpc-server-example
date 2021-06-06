@@ -1,2 +1,4 @@
 rootProject.name = "kt"
-include("app", "bff")
+include(
+    "app", "app:proto",
+    "bff")

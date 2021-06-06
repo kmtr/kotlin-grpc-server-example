@@ -6,6 +6,9 @@ package kt.hello
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import kt.hello.router.configureRouting
+import kt.hello.proto.HelloReply
+import kt.hello.proto.GreeterGrpc
+import kt.hello.proto.GreeterGrpcKt
 
 class App {
     val greeting: String
