@@ -36,6 +36,9 @@ dependencies {
 
     // proto
     implementation(project(":app:proto"))
+
+    // log
+    implementation("org.apache.logging.log4j:log4j-slf4j-impl:2.14.1")
 }
 
 application {

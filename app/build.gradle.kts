@@ -1,5 +1,3 @@
-import com.google.protobuf.gradle.*
-
 plugins {
     id("org.jetbrains.kotlin.jvm") version "1.5.10"
     id("com.google.protobuf") version "0.8.16"
@@ -39,6 +37,9 @@ dependencies {
 
     // proto
     implementation(project(":app:proto"))
+
+    // log
+    implementation("org.apache.logging.log4j:log4j-slf4j-impl:2.14.1")
 }
 
 application {
