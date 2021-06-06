@@ -3,6 +3,10 @@
  */
 package kt.hello
 
+import io.ktor.server.engine.*
+import io.ktor.server.netty.*
+import kt.hello.router.configureRouting
+
 class App {
     val greeting: String
         get() {
@@ -11,5 +15,12 @@ class App {
 }
 
 fun main() {
-    println(App().greeting)
+    println(
+        App().greeting
+    )
+    embeddedServer(
+        Netty, port = 8080, host = "127.0.0.1"
+    ) {
+        configureRouting()
+    }.start(wait = true)
 }

@@ -23,7 +23,6 @@ dependencies {
     // ktor
     implementation("io.ktor:ktor-server-core:1.6.0")
     implementation("io.ktor:ktor-server-netty:1.6.0")
-    implementation("io.ktor:ktor-server-serialization:1.6.0")
     testImplementation("io.ktor:ktor-server-tests:1.6.0")
 
     // Use the Kotlin test library.
