@@ -32,6 +32,7 @@ dependencies {
 
     // grpc for client
     implementation("io.grpc:grpc-protobuf:1.36.2")
+    implementation("io.grpc:grpc-kotlin-stub:1.1.0")
 
     // proto
     implementation(project(":app:proto"))

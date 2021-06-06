@@ -3,17 +3,12 @@
  */
 package kt.hello
 
-import io.ktor.server.engine.*
-import io.ktor.server.netty.*
-import kt.hello.router.configureRouting
-import kt.hello.proto.HelloReply
-import kt.hello.proto.GreeterGrpc
-import kt.hello.proto.GreeterGrpcKt
+import kt.hello.service.HelloWorldServer
 
 class App {
     val greeting: String
         get() {
-            return "Hello World!"
+            return "Hello, gRPC server!"
         }
 }
 
@@ -21,9 +16,8 @@ fun main() {
     println(
         App().greeting
     )
-    embeddedServer(
-        Netty, port = 8080, host = "127.0.0.1"
-    ) {
-        configureRouting()
-    }.start(wait = true)
+    val port = System.getenv("PORT")?.toInt() ?: 50051
+    val server = HelloWorldServer(port)
+    server.start()
+    server.blockUntilShutdown()
 }
