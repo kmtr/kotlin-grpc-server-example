@@ -39,7 +39,11 @@ application {
 
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:3.8.0"
+        if (osdetector.os == "osx" && osdetector.arch == "aarch_64") {
+            logger.warn("(osx-aarch_64): using `protoc` which is in \$PATH")
+        } else {
+            artifact = "com.google.protobuf:protoc:3.8.0"
+        }
     }
     plugins {
         id("grpc") {
