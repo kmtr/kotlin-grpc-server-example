@@ -10,9 +10,9 @@ import org.koin.core.context.startKoin
 import org.koin.dsl.module
 
 val appMod = module {
-    single { EnvImpl.Loader.load() as Env }
-    single { HelloWorldServiceImpl() as HelloWorldService }
-    single { HelloWorldServer(get<HelloWorldService>(), get<Env>()) }
+    single<Env> { EnvImpl.Loader.load() }
+    single<HelloWorldService> { HelloWorldServiceImpl() }
+    single { HelloWorldServer(get(), get()) }
 }
 
 class App : KoinComponent {
