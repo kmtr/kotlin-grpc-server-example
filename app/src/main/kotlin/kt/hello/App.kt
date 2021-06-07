@@ -1,21 +1,43 @@
 package kt.hello
 
-import kt.hello.service.HelloWorldServer
+import kt.hello.grpcserver.Env
+import kt.hello.grpcserver.HelloWorldServer
+import kt.hello.grpcserver.HelloWorldService
+import kt.hello.service.HelloWorldServiceImpl
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
+import org.koin.core.context.startKoin
+import org.koin.dsl.module
 
-public class Env(val grpcServerPort: Int) {
-    companion object Loader {
-        private const val GRPC_SERVER_PORT = "GRPC_SERVER_PORT"
-        fun load(): Env {
-            return Env(
-                grpcServerPort = System.getenv(Env.GRPC_SERVER_PORT)?.toInt() ?: 50051,
-            )
-        }
+val appMod = module {
+    single { EnvImpl.Loader.load() as Env }
+    single { HelloWorldServiceImpl() as HelloWorldService }
+    single { HelloWorldServer(get<HelloWorldService>(), get<Env>()) }
+}
+
+class App : KoinComponent {
+    private val server by inject<HelloWorldServer>()
+
+    fun run() {
+        server.start()
+        server.blockUntilShutdown()
     }
 }
 
 fun main() {
-    val env = Env.Loader.load()
-    val server = HelloWorldServer(env.grpcServerPort)
-    server.start()
-    server.blockUntilShutdown()
+    startKoin {
+        modules(appMod)
+    }
+    App().run()
+}
+
+public class EnvImpl(override val grpcServerPort: Int) : Env {
+    companion object Loader {
+        private const val GRPC_SERVER_PORT = "GRPC_SERVER_PORT"
+        fun load(): Env {
+            return EnvImpl(
+                grpcServerPort = System.getenv(Loader.GRPC_SERVER_PORT)?.toInt() ?: 50051,
+            )
+        }
+    }
 }

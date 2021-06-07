@@ -40,6 +40,10 @@ dependencies {
 
     // log
     implementation("org.apache.logging.log4j:log4j-slf4j-impl:2.14.1")
+
+    // koin
+    implementation("io.insert-koin:koin-core:3.0.2")
+    testImplementation("io.insert-koin:koin-test:3.0.2")
 }
 
 application {
