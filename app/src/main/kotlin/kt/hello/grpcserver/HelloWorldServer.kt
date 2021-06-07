@@ -19,30 +19,4 @@ abstract class HelloWorldService : GreeterGrpcKt.GreeterCoroutineImplBase()
 class HelloWorldServer(
     private val helloWorldService: HelloWorldService,
     private val env: Env
-) : KoinComponent {
-
-    private val server: Server = ServerBuilder
-        .forPort(env.grpcServerPort)
-        .addService(helloWorldService)
-        .build()
-
-    fun start() {
-        server.start()
-        logger.info("gRPC Server started, listening on ${env.grpcServerPort}")
-        Runtime.getRuntime().addShutdownHook(
-            Thread {
-                logger.info("*** shutting down gRPC server since JVM is shutting down")
-                this@HelloWorldServer.stop()
-                logger.info("*** server shut down")
-            }
-        )
-    }
-
-    private fun stop() {
-        server.shutdown()
-    }
-
-    fun blockUntilShutdown() {
-        server.awaitTermination()
-    }
-}
+) : BasicGrpcServer(helloWorldService, env)
