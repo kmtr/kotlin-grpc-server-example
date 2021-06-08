@@ -4,8 +4,6 @@ import kt.hello.grpcserver.Env
 import kt.hello.grpcserver.HelloWorldServer
 import kt.hello.grpcserver.HelloWorldService
 import kt.hello.service.HelloWorldServiceImpl
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 
@@ -13,10 +11,10 @@ val appMod = module {
     single<Env> { EnvImpl.Loader.load() }
     single<HelloWorldService> { HelloWorldServiceImpl() }
     single { HelloWorldServer(get(), get()) }
+    single { App(get()) }
 }
 
-class App : KoinComponent {
-    private val server by inject<HelloWorldServer>()
+class App(private val server: HelloWorldServer) {
 
     fun run() {
         server.start()
@@ -25,10 +23,10 @@ class App : KoinComponent {
 }
 
 fun main() {
-    startKoin {
+    val koinApp = startKoin {
         modules(appMod)
     }
-    App().run()
+    koinApp.koin.get<App>().run()
 }
 
 public class EnvImpl(override val grpcServerPort: Int) : Env {
