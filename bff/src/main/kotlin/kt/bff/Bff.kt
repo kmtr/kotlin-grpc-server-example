@@ -3,9 +3,6 @@ package kt.bff
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import kt.bff.router.configureRouting
-import kt.hello.proto.HelloReply
-import kt.hello.proto.GreeterGrpc
-import kt.hello.proto.GreeterGrpcKt
 
 
 public class Env(val serverPort: Int, val serverHost: String) {

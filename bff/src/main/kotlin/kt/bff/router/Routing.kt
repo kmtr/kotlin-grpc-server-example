@@ -1,11 +1,9 @@
 package kt.bff.router
 
 import io.grpc.ManagedChannelBuilder
-import io.ktor.routing.*;
-import io.ktor.http.*
 import io.ktor.application.*
 import io.ktor.response.*
-import io.ktor.request.*
+import io.ktor.routing.*
 import kt.bff.service.HelloWorldClient
 
 fun Application.configureRouting() {
