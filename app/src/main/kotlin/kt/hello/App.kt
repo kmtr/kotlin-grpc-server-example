@@ -5,6 +5,7 @@ import kt.hello.grpcserver.HelloWorldServer
 import kt.hello.grpcserver.HelloWorldService
 import kt.hello.service.HelloWorldServiceImpl
 import org.koin.core.context.startKoin
+import org.koin.dsl.koinApplication
 import org.koin.dsl.module
 
 val appMod = module {
@@ -23,7 +24,7 @@ class App(private val server: HelloWorldServer) {
 }
 
 fun main() {
-    val koinApp = startKoin {
+    val koinApp = koinApplication() {
         modules(appMod)
     }
     koinApp.koin.get<App>().run()
