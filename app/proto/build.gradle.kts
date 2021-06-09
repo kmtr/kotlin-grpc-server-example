@@ -1,8 +1,8 @@
 import com.google.protobuf.gradle.*
 
 plugins {
-    id("org.jetbrains.kotlin.jvm")
-    id("com.google.protobuf")
+    kotlin("jvm")
+    id("com.google.protobuf") version "0.8.16"
     `java-library`
 }
 

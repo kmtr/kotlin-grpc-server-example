@@ -1,5 +1,5 @@
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.5.10"
+    kotlin("jvm") version "1.5.10"
     application
 }
 
@@ -8,7 +8,8 @@ repositories {
 }
 
 dependencies {
-    implementation(project(":app"))
+    // project
+    implementation(project(":app:proto"))
 
     // Align versions of all Kotlin components
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
@@ -33,9 +34,6 @@ dependencies {
     // grpc for client
     implementation("io.grpc:grpc-protobuf:1.36.2")
     implementation("io.grpc:grpc-kotlin-stub:1.1.0")
-
-    // proto
-    implementation(project(":app:proto"))
 
     // log
     implementation("org.apache.logging.log4j:log4j-slf4j-impl:2.14.1")
