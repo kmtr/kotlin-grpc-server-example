@@ -31,7 +31,8 @@ dependencies {
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
 
-    // grpc for client
+    // grpc
+    implementation("io.grpc:grpc-netty:1.36.2")
     implementation("io.grpc:grpc-protobuf:1.36.2")
     implementation("io.grpc:grpc-kotlin-stub:1.1.0")
 
