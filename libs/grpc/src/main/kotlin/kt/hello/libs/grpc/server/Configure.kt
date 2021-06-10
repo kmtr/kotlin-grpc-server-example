@@ -1,5 +1,5 @@
 package kt.hello.libs.grpc.server
 
-interface Configure {
+interface Configuration {
     val grpcServerPort: Int
 }

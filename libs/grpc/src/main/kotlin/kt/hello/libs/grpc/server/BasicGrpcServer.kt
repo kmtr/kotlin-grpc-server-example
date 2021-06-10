@@ -6,7 +6,7 @@ import io.grpc.ServerBuilder
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-abstract class BasicGrpcServer(private val service: BindableService, private val env: Configure) {
+abstract class BasicGrpcServer(private val service: BindableService, private val env: Configuration) {
 
     private val logger: Logger = LoggerFactory.getLogger(BasicGrpcServer::class.java)
 
