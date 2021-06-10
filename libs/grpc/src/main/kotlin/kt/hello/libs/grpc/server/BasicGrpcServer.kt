@@ -1,4 +1,4 @@
-package kt.hello.grpcserver
+package kt.hello.libs.grpc.server
 
 import io.grpc.BindableService
 import io.grpc.Server
@@ -6,7 +6,7 @@ import io.grpc.ServerBuilder
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-abstract class BasicGrpcServer(private val service: BindableService, private val env: Env) {
+abstract class BasicGrpcServer(private val service: BindableService, private val env: Configure) {
 
     private val logger: Logger = LoggerFactory.getLogger(BasicGrpcServer::class.java)
 

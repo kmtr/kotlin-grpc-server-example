@@ -12,6 +12,8 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/app/proto" />
             <option value="$PROJECT_DIR$/bff" />
+            <option value="$PROJECT_DIR$/libs" />
+            <option value="$PROJECT_DIR$/libs/grpc" />
           </set>
         </option>
       </GradleProjectSettings>
