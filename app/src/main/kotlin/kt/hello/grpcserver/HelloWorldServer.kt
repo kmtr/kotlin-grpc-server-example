@@ -6,10 +6,10 @@ interface Env {
     val grpcServerPort: Int
 }
 
-abstract class HelloWorldService : GreeterGrpcKt.GreeterCoroutineImplBase()
+abstract class HelloWorldLogic : GreeterGrpcKt.GreeterCoroutineImplBase()
 
 // https://github.com/grpc/grpc-kotlin/blob/master/examples/server/src/main/kotlin/io/grpc/examples/helloworld/HelloWorldServer.kt
 class HelloWorldServer(
-    private val helloWorldService: HelloWorldService,
+    private val helloWorldService: HelloWorldLogic,
     private val env: Env
 ) : BasicGrpcServer(helloWorldService, env)

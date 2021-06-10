@@ -1,16 +1,15 @@
 package kt.hello
 
 import kt.hello.grpcserver.Env
+import kt.hello.grpcserver.HelloWorldLogic
 import kt.hello.grpcserver.HelloWorldServer
-import kt.hello.grpcserver.HelloWorldService
-import kt.hello.service.HelloWorldServiceImpl
-import org.koin.core.context.startKoin
+import kt.hello.logic.HelloWorldLogicImpl
 import org.koin.dsl.koinApplication
 import org.koin.dsl.module
 
 val appMod = module {
     single<Env> { EnvImpl.Loader.load() }
-    single<HelloWorldService> { HelloWorldServiceImpl() }
+    single<HelloWorldLogic> { HelloWorldLogicImpl() }
     single { HelloWorldServer(get(), get()) }
     single { App(get()) }
 }
